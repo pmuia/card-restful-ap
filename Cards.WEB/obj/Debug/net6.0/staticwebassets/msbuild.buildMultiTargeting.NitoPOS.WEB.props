@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NitoPOS.WEB.props" />
+</Project>

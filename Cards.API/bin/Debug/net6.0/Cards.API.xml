@@ -1,0 +1,1228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cards.API</name>
+    </assembly>
+    <members>
+        <member name="T:Cards.API.Controllers.AuthController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Controllers.AuthController.#ctor(AutoMapper.IMapper,Core.Management.Interfaces.AdminModule.ISecurityRepository)">
+            <summary>
+            
+            </summary>
+            <param name="mapper"></param>
+            <param name="securityRepository"></param>
+        </member>
+        <member name="M:Cards.API.Controllers.AuthController.RegisterClient(Cards.API.Models.DTOs.Requests.Auth.ClientRequest)">
+            <summary>
+            Offers ability to register api clients
+            </summary>     
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.AuthController.CreateToken(Cards.API.Models.DTOs.Requests.Auth.TokenRequest)">
+            <summary>
+            Before invoking this endpoint ensure your key and secret are whitelisted. 
+            Generates a JWT Bearer access token that can be used to authorize subsequent requests.      
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.AuthController.RefreshAccessToken(Cards.API.Models.DTOs.Requests.Auth.RefreshRequest)">
+            <summary>
+            Extends the lifetime of an accessToken before it expires
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.AuthController.AssignPlusActivateClientRole(Cards.API.Models.DTOs.Requests.Auth.ActivationRequest)">
+            <summary>
+            Activates and assigns desired role to a client after verification
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.AuthController.GetClientById(System.Guid)">
+            <summary>
+            Allows fetching of a resource client
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.AuthController.GetClients">
+            <summary>
+            Allows fetching of resource clients
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Cards.API.Controllers.CardsController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Controllers.CardsController.#ctor(AutoMapper.IMapper,Microsoft.Extensions.Configuration.IConfiguration,Core.Management.Interfaces.CardModule.ICardRepository)">
+            <summary>
+            Business Posting Group Constructor
+            </summary>
+        </member>
+        <member name="M:Cards.API.Controllers.CardsController.RegisterBusinessPostingGroup(Cards.API.Models.DTOs.Requests.CardModule.CardRequest)">
+            <summary>
+            Used to create Cards
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.CardsController.EditBusinessPostingGroup(Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest)">
+            <summary>
+            Used to edit a Card
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.CardsController.GetBusinessPostingGroupById(System.String)">
+            <summary>
+            Get Card by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.CardsController.GetBusinessPostingGroups(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieve paginated list of Cards for Admins
+            </summary>
+            <param name="searchTerm"></param>
+            <param name="offset"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.CardsController.GetBusinessPostingGroupsByCompanyAndPartnerId(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieve paginated list of Cards by User
+            </summary>
+            <param name="searchTerm"></param>
+            <param name="createdBy"></param>
+            <param name="offset"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cards.API.Models.Attribute.ServerKeyAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Attribute.ServerKeyAttribute.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cards.API.Models.Attribute.SwaggerOrderAttribute">
+            <summary>
+            Annotates a controller with a Swagger sorting order that is used when generating the Swagger documentation to
+            order the controllers in a specific desired order.
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Attribute.SwaggerOrderAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cards.API.Models.Attribute.SwaggerOrderAttribute"/> class.
+            </summary>
+            <param name="order">Sets the sorting order of the controller.</param>
+        </member>
+        <member name="P:Cards.API.Models.Attribute.SwaggerOrderAttribute.Order">
+            <summary>
+            Gets the sorting order of the controller.
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.Common.ConfigureSwaggerOptions">
+            <summary>
+            Configures the Swagger generation options.
+            </summary>
+            <remarks>This allows API versioning to define a Swagger document per API version after the
+            <see cref="T:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider"/> service has been resolved from the service container.</remarks>
+        </member>
+        <member name="M:Cards.API.Models.Common.ConfigureSwaggerOptions.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cards.API.Models.Common.ConfigureSwaggerOptions"/> class.
+            </summary>
+            <param name="provider">The <see cref="T:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider">provider</see> used to generate Swagger documents.</param>
+        </member>
+        <member name="M:Cards.API.Models.Common.ConfigureSwaggerOptions.Configure(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Cards.API.Models.Common.HelperMethods">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Common.HelperMethods.GetEnumDescription(System.Enum)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cards.API.Models.Common.PageCollectionInfo`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Cards.API.Models.Common.PageCollectionInfo`1.PageIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.PageCollectionInfo`1.PageSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.PageCollectionInfo`1.PageCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.PageCollectionInfo`1.ItemsCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.PageCollectionInfo`1.BalanceBroughtFoward">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.PageCollectionInfo`1.BalanceCarriedForward">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.PageCollectionInfo`1.TotalDebits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.PageCollectionInfo`1.TotalCredits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.PageCollectionInfo`1.TotalApportioned">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.PageCollectionInfo`1.TotalShortage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.Common.RequestLoggingMiddleware">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Common.RequestLoggingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+        </member>
+        <member name="M:Cards.API.Models.Common.RequestLoggingMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cards.API.Models.Common.ResponseStatus">
+            <summary>
+            Generic response status object
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.ResponseStatus.Code">
+            <summary>
+            Status code of the request
+            </summary> 
+        </member>
+        <member name="P:Cards.API.Models.Common.ResponseStatus.Message">
+            <summary>
+            Friendly message to be displayed to end-user after evaluating status code
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.Common.ResponseObject`1">
+            <summary>
+            It's a complex generic base object encapsulating a response object of a specified type alongside request status
+            </summary>    
+        </member>
+        <member name="P:Cards.API.Models.Common.ResponseObject`1.Status">
+            <summary>
+            Object containing status of a function call
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.ResponseObject`1.Data">
+            <summary>
+            Generic object containing a method's response
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.ResponseObject`1.Paging">
+            <summary>
+            Onject with Pagination Information
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Common.ResponseObject`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.Common.Paging">
+            <summary>
+            Object containing paging parameters 
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.Paging.Next">
+            <summary>
+            Url of the subsequent page and its attributes
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.Paging.Previous">
+            <summary>
+            Url of the previous page and its attributes
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.Common.Paging.Count">
+            <summary>
+            Total Count of all elements
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.Common.VersionErrorProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Common.VersionErrorProvider.CreateResponse(Microsoft.AspNetCore.Mvc.Versioning.ErrorResponseContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.Auth.ActivationRequest">
+            <summary>
+            Object to activate a client
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.Auth.ActivationRequest.ApiKey">
+            <summary>
+            ApiKey as provided when registering
+            </summary>        
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.Auth.ActivationRequest.Role">
+            <summary>
+            Role to be assigned
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.Auth.ClientRequest">
+            <summary>
+            Object with parameters required to register a resource client
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.Auth.ClientRequest.Name">
+            <summary>
+            Name of client requesting resource access
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.Auth.ClientRequest.ContactEmail">
+            <summary>
+            Contact email must be provided
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.Auth.ClientRequest.Description">
+            <summary>
+            Short description of the intented API use
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.Auth.RefreshRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.Auth.RefreshRequest.AppSecret">
+            <summary>
+            AppSecret as provided
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.Auth.TokenRequest">
+            <summary>
+            Object to request access token
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.Auth.TokenRequest.ApiKey">
+            <summary>
+            ApiKey as provided when registering
+            </summary>        
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.Auth.TokenRequest.AppSecret">
+            <summary>
+            AppSecret as provided
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.CardModule.CardRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.CardRequest.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.CardRequest.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.CardRequest.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.CardRequest.CreatedBy">
+            <summary>
+            Created By
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.CardRequest.ModifiedBy">
+            <summary>
+            ModifiedBy
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest.CardId">
+            <summary>
+            unique identifier
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest.RecordStatus">
+            <summary>
+            Record Status
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest.CreatedBy">
+            <summary>
+            Created By
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest.ModifiedBy">
+            <summary>
+            ModifiedBy
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.EmailAlertId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.From">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.To">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.Cc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.Subject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.Body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.IsBodyHtml">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.DlrStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.Origin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.Priority">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.SendRetry">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.SecurityCritical">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.HasAttachment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.AttachmentFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.IsQueued">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.IsPosted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.ModifiedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditEmailAlertRequest.CreatedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.TextAlertId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.Recipient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.Body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.DlrStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.Reference">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.Origin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.Priority">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.SendRetry">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.SecurityCritical">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.IsQueued">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.IsPosted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.ModifiedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EditTextAlertRequest.CreatedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.From">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.To">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.Cc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.Subject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.Body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.IsBodyHtml">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.DlrStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.Origin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.Priority">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.SendRetry">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.SecurityCritical">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.HasAttachment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.AttachmentFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.IsQueued">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.IsPosted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.ModifiedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.EmailAlertRequest.CreatedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.Recipient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.Body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.DlrStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.Reference">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.Origin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.Priority">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.SendRetry">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.SecurityCritical">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.IsQueued">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.IsPosted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.ModifiedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.CreatedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Responses.Auth.ClientDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.ClientDto.Role">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.ClientDto.AccessTokenLifetimeInMins">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.ClientDto.AuthorizationCodeLifetimeInMins">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.ClientDto.IsActive">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.ClientDto.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.ClientDto.CreatedAt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.ClientDto.ModifiedAt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Responses.Auth.MinifiedClientDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.MinifiedClientDto.ApiKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.MinifiedClientDto.Secret">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.MinifiedClientDto.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.MinifiedClientDto.ContactEmail">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Responses.Auth.TokenDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.TokenDto.AccessToken">
+            <summary>
+            JWT token to be used in the subsequent calls for authorization
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.TokenDto.Expires">
+            <summary>
+            Timestamp at which the token expires
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.Auth.TokenDto.TokenType">
+            <summary>
+            Type of token
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Responses.CardModule.CardDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.CardModule.CardDto.CardId">
+            <summary>
+            unique identifier
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.CardModule.CardDto.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.CardModule.CardDto.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.CardModule.CardDto.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.CardModule.CardDto.CreatedBy">
+            <summary>
+            Created By
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.CardModule.CardDto.ModifiedBy">
+            <summary>
+            ModifiedBy
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Responses.CardModule.MinifiedCardDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.CardModule.MinifiedCardDto.CardId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.EmailAlertId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.From">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.To">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.Cc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.Subject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.Body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.IsBodyHtml">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.DlrStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.Origin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.Priority">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.SendRetry">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.SecurityCritical">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.HasAttachment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.AttachmentFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.IsQueued">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.IsPosted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.ModifiedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.CreatedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.EmailAlertDto.Commands">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Responses.MessagingModule.MinifiedEmailAlertDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.MinifiedEmailAlertDto.EmailAlertId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Responses.MessagingModule.MinifiedTextAlertDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.MinifiedTextAlertDto.TextAlertId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.TextAlertId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.Recipient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.Body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.DlrStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.DlrStatusDescription">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.Reference">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.Origin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.Priority">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.SendRetry">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.SecurityCritical">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.IsQueued">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.IsPosted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.ModifiedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.CreatedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.MessagingModule.TextAlertDto.Commands">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.Filters.ExceptionFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Filters.ExceptionFilter.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILogger{Cards.API.Models.Filters.ExceptionFilter})">
+            <summary>
+            
+            </summary>
+            <param name="env"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Cards.API.Models.Filters.ExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Cards.API.Models.Filters.HttpActionResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Filters.HttpActionResult.#ctor(System.Object,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="statusCode"></param>
+        </member>
+        <member name="T:Cards.API.Models.Filters.ModelStateFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Filters.ModelStateFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Cards.API.Models.Filters.SwaggerAuthOperationFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Filters.SwaggerAuthOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Cards.API.Models.Filters.SwaggerDefaultValues">
+            <summary>
+            Represents the Swagger/Swashbuckle operation filter used to document the implicit API version parameter.
+            </summary>
+            <remarks>This <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter"/> is only required due to bugs in the <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator"/>.
+            Once they are fixed and published, this class can be removed.</remarks>
+        </member>
+        <member name="M:Cards.API.Models.Filters.SwaggerDefaultValues.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Applies the filter to the specified operation using the given context.
+            </summary>
+            <param name="operation">The operation to apply the filter to.</param>
+            <param name="context">The current operation filter context.</param>
+        </member>
+        <member name="T:Cards.API.Models.Mappings.MappingProfile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Models.Mappings.MappingProfile.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfigurationExtensionMethods">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfigurationExtensionMethods.AddAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfigurationExtensionMethods.AddVersioning(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfigurationExtensionMethods.AddCustomControllers(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfigurationExtensionMethods.AddSwaggerDocumentation(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ConfigurationExtensionMethods.XmlCommentsFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfigurationExtensionMethods.UseSwaggerDocumentation(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="provider"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfigurationExtensionMethods.AddCustomOptions(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
