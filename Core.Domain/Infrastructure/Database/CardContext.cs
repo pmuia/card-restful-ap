@@ -1,6 +1,7 @@
 ﻿using Core.Domain.Common;
 using Core.Domain.Entities;
 using Core.Domain.Entities.CardModule.Aggregates;
+using Core.Domain.Entities.UserModule.Aggregates;
 using Core.Domain.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -132,6 +133,10 @@ namespace Core.Domain.Infrastructure.Database
 
         // Cards Module
         public DbSet<Card> Cards { get; set; }
+
+        //User Module
+
+        public DbSet<User> Users { get; set; }
     }
 
 }

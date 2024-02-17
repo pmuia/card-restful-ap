@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Common;
+using Core.Domain.Entities.UserModule.Aggregates;
 
 namespace Core.Domain.Entities.CardModule.Aggregates
 {
@@ -8,5 +9,6 @@ namespace Core.Domain.Entities.CardModule.Aggregates
         public string Name { get; set; }
         public string Description { get; set; }
         public string Color { get; set; }
+        public User User { get; set; }
     }
 }

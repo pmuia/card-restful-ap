@@ -13,26 +13,6 @@ namespace Core.Domain.Migrations
                 name: "card");
 
             migrationBuilder.CreateTable(
-                name: "Cards",
-                schema: "card",
-                columns: table => new
-                {
-                    CardId = table.Column<long>(type: "bigint", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RecordStatus = table.Column<byte>(type: "tinyint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cards", x => x.CardId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Clients",
                 schema: "card",
                 columns: table => new
@@ -96,6 +76,54 @@ namespace Core.Domain.Migrations
                     table.PrimaryKey("PK_Settings", x => x.SettingId);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Users",
+                schema: "card",
+                columns: table => new
+                {
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Role = table.Column<byte>(type: "tinyint", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RecordStatus = table.Column<byte>(type: "tinyint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cards",
+                schema: "card",
+                columns: table => new
+                {
+                    CardId = table.Column<long>(type: "bigint", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RecordStatus = table.Column<byte>(type: "tinyint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cards", x => x.CardId);
+                    table.ForeignKey(
+                        name: "FK_Cards_Users_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "card",
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Language",
                 columns: new[] { "LanguageId", "CreatedAt", "CreatedBy", "Default", "IsActive", "IsoCode", "ModifiedAt", "ModifiedBy", "Name", "RecordStatus" },
@@ -122,6 +150,12 @@ namespace Core.Domain.Migrations
                     { 10, new DateTime(2021, 4, 23, 18, 40, 0, 0, DateTimeKind.Unspecified), null, "TokenLifetimeInMins", new DateTime(2021, 4, 23, 18, 40, 0, 0, DateTimeKind.Unspecified), null, (byte)0, "60" },
                     { 11, new DateTime(2021, 4, 23, 18, 40, 0, 0, DateTimeKind.Unspecified), null, "CodeLifetimeInMins", new DateTime(2021, 4, 23, 18, 40, 0, 0, DateTimeKind.Unspecified), null, (byte)0, "10" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cards_UserId",
+                schema: "card",
+                table: "Cards",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -139,6 +173,10 @@ namespace Core.Domain.Migrations
 
             migrationBuilder.DropTable(
                 name: "Settings");
+
+            migrationBuilder.DropTable(
+                name: "Users",
+                schema: "card");
         }
     }
 }

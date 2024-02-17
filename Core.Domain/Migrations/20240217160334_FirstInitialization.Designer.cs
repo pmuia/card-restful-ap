@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Domain.Migrations
 {
     [DbContext(typeof(CardContext))]
-    [Migration("20240217152851_FirstInitialization")]
+    [Migration("20240217160334_FirstInitialization")]
     partial class FirstInitialization
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,12 @@ namespace Core.Domain.Migrations
                     b.Property<byte>("RecordStatus")
                         .HasColumnType("tinyint");
 
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("CardId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Cards", "card");
                 });
@@ -320,6 +325,55 @@ namespace Core.Domain.Migrations
                             RecordStatus = (byte)0,
                             Value = "10"
                         });
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.UserModule.Aggregates.User", b =>
+                {
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
+
+                    b.Property<byte>("RecordStatus")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Role")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Users", "card");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.CardModule.Aggregates.Card", b =>
+                {
+                    b.HasOne("Core.Domain.Entities.UserModule.Aggregates.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
