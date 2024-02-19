@@ -51,7 +51,7 @@ namespace Cards.API.Controllers
 
             return Created(string.Empty, new ResponseObject<MinifiedCardDto>
             {
-                Data = new[] { mapper.Map<MinifiedCardDto>(await _cardRepository.CreateCard(request.Name, request.Description, request.Color, request.CreatedBy)) }
+                Data = new[] { mapper.Map<MinifiedCardDto>(await _cardRepository.CreateCard(request.UserId,request.Name, request.Description, request.Color, request.CreatedBy)) }
             });
         }
 
@@ -69,7 +69,7 @@ namespace Cards.API.Controllers
         {
             return Ok(new ResponseObject<bool>
             {
-                Data = new[] { await _cardRepository.EditCard(long.Parse(request.CardId), request.Name, request.Description, request.Color, request.RecordStatus, request.ModifiedBy) }
+                Data = new[] { await _cardRepository.EditCard(long.Parse(request.CardId), long.Parse(request.UserId), request.Name, request.Description, request.Color, request.RecordStatus, request.ModifiedBy) }
             });
         }
 
@@ -121,7 +121,7 @@ namespace Cards.API.Controllers
         /// Retrieve paginated list of Cards by User
         /// </summary>
         /// <param name="searchTerm"></param>
-        /// <param name="createdBy"></param>
+        /// <param name="userId"></param>
         /// <param name="offset"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
@@ -129,12 +129,12 @@ namespace Cards.API.Controllers
         [Produces(MediaTypeNames.Application.Json), Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(PageCollectionInfo<CardDto>), (int)HttpStatusCode.OK)]
 
-        public async Task<IActionResult> GetBusinessPostingGroupsByCompanyAndPartnerId([FromQuery] string createdBy, [FromQuery] string searchTerm, [FromQuery] int offset, [FromQuery] int pageSize)
+        public async Task<IActionResult> GetBusinessPostingGroupsByCompanyAndPartnerId([FromQuery] string userId, [FromQuery] string searchTerm, [FromQuery] int offset, [FromQuery] int pageSize)
         {
             offset = offset < 1 ? 0 : offset; pageSize = pageSize < 1 ? Convert.ToInt32(configuration["Paging:Size"]) : pageSize;
 
 
-            (List<Card> businessPostingGroups, int newStartIndex, int newPageSize, int totalCount) = await _cardRepository.GetCardsByUser(searchTerm, offset, pageSize, createdBy);
+            (List<Card> businessPostingGroups, int newStartIndex, int newPageSize, int totalCount) = await _cardRepository.GetCardsByUser(searchTerm, offset, pageSize, long.Parse(userId));
             return Ok(new PageCollectionInfo<CardDto>
             {
                 PageCollection = mapper.Map<List<CardDto>>(businessPostingGroups),

@@ -24,12 +24,13 @@ namespace Core.Management.Repositories.CardModule
             this.idGenerator = idGenerator;
         }
         private CardContext Context => context as CardContext;
-        public async Task<Card> CreateCard(string name, string description, string color, string createdBy)
+        public async Task<Card> CreateCard(long userId, string name, string description, string color, string createdBy)
         {
             Card Card = new Card
 
             {
                 CardId = idGenerator.CreateId(),
+                UserId = userId,
                 Name = name,
                 Description = description,
                 Color = color,
@@ -44,15 +45,16 @@ namespace Core.Management.Repositories.CardModule
             return Card;
         }
 
-        public async Task<bool> EditCard(long cardId, string name, string description, string color, byte recordStatus, string modifiedBy)
+        public async Task<bool> EditCard(long cardId, long userId, string name, string description, string color, byte recordStatus, string modifiedBy)
         {
-            Card Card = await ValidatedFind(x => x.CardId == cardId).ConfigureAwait(false);
+            Card card = await ValidatedFind(x => x.CardId == cardId).ConfigureAwait(false);
 
-            Card.Name = name;
-            Card.Description = description;
-            Card.Color = color;
-            Card.RecordStatus = recordStatus;
-            Card.ModifiedBy = modifiedBy;
+            card.UserId = userId;
+            card.Name = name;
+            card.Description = description;
+            card.Color = color;
+            card.RecordStatus = recordStatus;
+            card.ModifiedBy = modifiedBy;
 
             return await Context.SaveChangesAsync().ConfigureAwait(false) > 0;
 
@@ -98,7 +100,7 @@ namespace Core.Management.Repositories.CardModule
             offset + pageSize, pageSize, totalCount);
         }
 
-        public async Task<(List<Card> Cards, int newStartIndex, int newPageSize, int totalCount)> GetCardsByUser(string searchTerm, int offset, int pageSize, string createdBy)
+        public async Task<(List<Card> Cards, int newStartIndex, int newPageSize, int totalCount)> GetCardsByUser(string searchTerm, int offset, int pageSize, long userId)
         {
             ValidatedParameter("searchTerm", searchTerm, out searchTerm, throwException: false);
             searchTerm = searchTerm.ToUpper();
@@ -107,7 +109,7 @@ namespace Core.Management.Repositories.CardModule
 
             Expression<Func<Card, bool>> expressionFilter = x => true;
 
-            expressionFilter = expressionFilter.And(x => x.CreatedBy == createdBy);
+            expressionFilter = expressionFilter.And(x => x.UserId == userId);
 
             if (searchTerm.Length < 1)
                 return (await Context.Cards

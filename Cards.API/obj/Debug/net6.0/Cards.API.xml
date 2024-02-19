@@ -103,7 +103,47 @@
             Retrieve paginated list of Cards by User
             </summary>
             <param name="searchTerm"></param>
-            <param name="createdBy"></param>
+            <param name="userId"></param>
+            <param name="offset"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cards.API.Controllers.UsersController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cards.API.Controllers.UsersController.#ctor(AutoMapper.IMapper,Microsoft.Extensions.Configuration.IConfiguration,Core.Management.Interfaces.AdminModule.IUserRepository)">
+            <summary>
+            Business Posting Group Constructor
+            </summary>
+        </member>
+        <member name="M:Cards.API.Controllers.UsersController.RegisterUser(Cards.API.Models.DTOs.Requests.AdminModule.UserRequest)">
+            <summary>
+            Used to create Users
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.UsersController.EditUser(Cards.API.Models.DTOs.Requests.AdminModule.EditUserRequest)">
+            <summary>
+            Used to edit a User
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.UsersController.GetUserById(System.String)">
+            <summary>
+            Get User by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cards.API.Controllers.UsersController.GetUsers(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieve paginated list of Users
+            </summary>
+            <param name="searchTerm"></param>
             <param name="offset"></param>
             <param name="pageSize"></param>
             <returns></returns>
@@ -312,6 +352,71 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.AdminModule.EditUserRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.EditUserRequest.UserId">
+            <summary>
+            unique identifier
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.EditUserRequest.Email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.EditUserRequest.Role">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.EditUserRequest.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.EditUserRequest.CreatedBy">
+            <summary>
+            Created By
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.EditUserRequest.ModifiedBy">
+            <summary>
+            ModifiedBy
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Requests.AdminModule.UserRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.UserRequest.Email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.UserRequest.Role">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.UserRequest.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.UserRequest.CreatedBy">
+            <summary>
+            Created By
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.AdminModule.UserRequest.ModifiedBy">
+            <summary>
+            ModifiedBy
+            </summary>
+        </member>
         <member name="T:Cards.API.Models.DTOs.Requests.Auth.ActivationRequest">
             <summary>
             Object to activate a client
@@ -382,6 +487,11 @@
             
             </summary>
         </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.CardRequest.UserId">
+            <summary>
+            unique identifier
+            </summary>
+        </member>
         <member name="P:Cards.API.Models.DTOs.Requests.CardModule.CardRequest.Description">
             <summary>
             
@@ -408,6 +518,11 @@
             </summary>
         </member>
         <member name="P:Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest.CardId">
+            <summary>
+            unique identifier
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest.UserId">
             <summary>
             unique identifier
             </summary>
@@ -760,6 +875,41 @@
         <member name="P:Cards.API.Models.DTOs.Requests.MessagingModule.TextAlertRequest.CreatedBy">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:Cards.API.Models.DTOs.Responses.AdminModule.UserDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.AdminModule.UserDto.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.AdminModule.UserDto.Email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.AdminModule.UserDto.Role">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.AdminModule.UserDto.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.AdminModule.UserDto.CreatedBy">
+            <summary>
+            Created By
+            </summary>
+        </member>
+        <member name="P:Cards.API.Models.DTOs.Responses.AdminModule.UserDto.ModifiedBy">
+            <summary>
+            ModifiedBy
             </summary>
         </member>
         <member name="T:Cards.API.Models.DTOs.Responses.Auth.ClientDto">

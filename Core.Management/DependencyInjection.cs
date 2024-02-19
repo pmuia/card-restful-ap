@@ -30,6 +30,7 @@ namespace Core.Management
             services.AddScoped<ISecurityRepository, SecurityRepository>();
 
             services.AddScoped<ICardRepository, CardRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<ISeed, Seed>();
             return services;

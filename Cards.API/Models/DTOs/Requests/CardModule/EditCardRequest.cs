@@ -15,6 +15,13 @@ namespace Cards.API.Models.DTOs.Requests.CardModule
         public string CardId { get; set; }
 
         /// <summary>
+        /// unique identifier
+        /// </summary>
+        [Required(AllowEmptyStrings = false, ErrorMessage = "UserId must be provided")]
+        [Range(1, long.MaxValue, ErrorMessage = "CardId must be greater than 0")]
+        public string UserId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [Required(AllowEmptyStrings = false, ErrorMessage = "Name must be provided")]
