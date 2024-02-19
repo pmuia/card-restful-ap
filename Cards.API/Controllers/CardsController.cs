@@ -46,7 +46,7 @@ namespace Cards.API.Controllers
         [Produces(MediaTypeNames.Application.Json), Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(ResponseObject<MinifiedCardDto>), (int)HttpStatusCode.OK)]
 
-        public async Task<IActionResult> RegisterBusinessPostingGroup([FromBody, Required] CardRequest request)
+        public async Task<IActionResult> RegisterCard([FromBody, Required] CardRequest request)
         {
 
             return Created(string.Empty, new ResponseObject<MinifiedCardDto>
@@ -65,7 +65,7 @@ namespace Cards.API.Controllers
         [Produces(MediaTypeNames.Application.Json), Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(ResponseObject<bool>), (int)HttpStatusCode.OK)]
 
-        public async Task<IActionResult> EditBusinessPostingGroup([FromBody, Required] EditCardRequest request)
+        public async Task<IActionResult> EditCard([FromBody, Required] EditCardRequest request)
         {
             return Ok(new ResponseObject<bool>
             {
@@ -82,7 +82,7 @@ namespace Cards.API.Controllers
         [Produces(MediaTypeNames.Application.Json), Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(ResponseObject<CardDto>), (int)HttpStatusCode.OK)]
 
-        public async Task<IActionResult> GetBusinessPostingGroupById([FromRoute, Range(1, long.MaxValue, ErrorMessage = "id must be greater than 0"),
+        public async Task<IActionResult> GetCardById([FromRoute, Range(1, long.MaxValue, ErrorMessage = "id must be greater than 0"),
             Required(AllowEmptyStrings = false, ErrorMessage = "id must be provided")]
             string id)
         {
@@ -102,7 +102,7 @@ namespace Cards.API.Controllers
         [Produces(MediaTypeNames.Application.Json), Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(PageCollectionInfo<CardDto>), (int)HttpStatusCode.OK)]
 
-        public async Task<IActionResult> GetBusinessPostingGroups([FromQuery] string searchTerm, [FromQuery] int offset, [FromQuery] int pageSize)
+        public async Task<IActionResult> GetCards([FromQuery] string searchTerm, [FromQuery] int offset, [FromQuery] int pageSize)
         {
             offset = offset < 1 ? 0 : offset; pageSize = pageSize < 1 ? Convert.ToInt32(configuration["Paging:Size"]) : pageSize;
 
@@ -129,7 +129,7 @@ namespace Cards.API.Controllers
         [Produces(MediaTypeNames.Application.Json), Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(PageCollectionInfo<CardDto>), (int)HttpStatusCode.OK)]
 
-        public async Task<IActionResult> GetBusinessPostingGroupsByCompanyAndPartnerId([FromQuery] string userId, [FromQuery] string searchTerm, [FromQuery] int offset, [FromQuery] int pageSize)
+        public async Task<IActionResult> GetCardsByUser([FromQuery] string userId, [FromQuery] string searchTerm, [FromQuery] int offset, [FromQuery] int pageSize)
         {
             offset = offset < 1 ? 0 : offset; pageSize = pageSize < 1 ? Convert.ToInt32(configuration["Paging:Size"]) : pageSize;
 

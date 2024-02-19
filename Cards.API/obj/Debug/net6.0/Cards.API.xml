@@ -68,28 +68,28 @@
             Business Posting Group Constructor
             </summary>
         </member>
-        <member name="M:Cards.API.Controllers.CardsController.RegisterBusinessPostingGroup(Cards.API.Models.DTOs.Requests.CardModule.CardRequest)">
+        <member name="M:Cards.API.Controllers.CardsController.RegisterCard(Cards.API.Models.DTOs.Requests.CardModule.CardRequest)">
             <summary>
             Used to create Cards
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:Cards.API.Controllers.CardsController.EditBusinessPostingGroup(Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest)">
+        <member name="M:Cards.API.Controllers.CardsController.EditCard(Cards.API.Models.DTOs.Requests.CardModule.EditCardRequest)">
             <summary>
             Used to edit a Card
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:Cards.API.Controllers.CardsController.GetBusinessPostingGroupById(System.String)">
+        <member name="M:Cards.API.Controllers.CardsController.GetCardById(System.String)">
             <summary>
             Get Card by Id
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Cards.API.Controllers.CardsController.GetBusinessPostingGroups(System.String,System.Int32,System.Int32)">
+        <member name="M:Cards.API.Controllers.CardsController.GetCards(System.String,System.Int32,System.Int32)">
             <summary>
             Retrieve paginated list of Cards for Admins
             </summary>
@@ -98,7 +98,7 @@
             <param name="pageSize"></param>
             <returns></returns>
         </member>
-        <member name="M:Cards.API.Controllers.CardsController.GetBusinessPostingGroupsByCompanyAndPartnerId(System.String,System.String,System.Int32,System.Int32)">
+        <member name="M:Cards.API.Controllers.CardsController.GetCardsByUser(System.String,System.String,System.Int32,System.Int32)">
             <summary>
             Retrieve paginated list of Cards by User
             </summary>
